@@ -1,0 +1,58 @@
+apply plugin: 'com.android.application'
+
+android {
+    signingConfigs {
+        android {
+            keyAlias 'android'
+            keyPassword '666666'
+            storeFile file('C:/Users/ggq/Desktop/demo.jks')
+            storePassword '666666'
+        }
+    }
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.example.ggq.gaoguoqing20180828"
+        minSdkVersion 15
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        ndk {
+            //设置支持的SO库架构（开发者可以根据需要，选择一个或多个平台的so）
+            abiFilters "armeabi", "armeabi-v7a", "arm64-v8a", "x86","arm64-v8a","x86_64"
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            signingConfig signingConfigs.android
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'androidx.appcompat:appcompat:1.0.0-alpha1'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.1.0-alpha3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha3'
+    implementation 'com.umeng.sdk:common:latest.integration'
+    implementation 'com.squareup.okhttp3:okhttp:3.11.0'
+    implementation 'com.jcodecraeer:xrecyclerview:1.5.9'
+    implementation 'com.jakewharton:butterknife:8.2.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.2.1'
+    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    //3D地图
+    //implementation 'com.amap.api:3dmap:latest.integration'
+    //导航
+    implementation 'com.amap.api:navi-3dmap:latest.integration'
+    //搜索
+    implementation 'com.amap.api:search:latest.integration'
+    //定位
+    implementation 'com.amap.api:location:latest.integration'
+}
